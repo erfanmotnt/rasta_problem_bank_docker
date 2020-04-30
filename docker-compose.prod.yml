@@ -4,97 +4,28 @@ services:
   web:
     build:
       context: ./app
-      dockerfile: Dockerfile.prod
+      dockerfile: ./../rasta_problem_bank/Dockerfile.prod
     command: gunicorn ra.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/usr/src/app/staticfiles
-      - media_volume:/usr/src/app/media
       - ./app/logging:/usr/src/app/logging
     env_file:
       - ./.env.prod
     depends_on:
       - db
-  test_web:
-    build:
-      context: ./test_app
-      dockerfile: Dockerfile.prod
-    command: gunicorn ra.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - test_static_volume:/usr/src/app/staticfiles
-      - test_media_volume:/usr/src/app/media
-      - ./test_app/logging:/usr/src/app/logging
-    env_file:
-      - ./.env.test
-    depends_on:
-      - test_db
-      - web
-      - hemmat_web
-  hemmat_web:
-    build:
-      context: ./hemmat_app
-      dockerfile: Dockerfile.prod
-    command: gunicorn ra.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - hemmat_static_volume:/usr/src/app/staticfiles
-      - hemmat_media_volume:/usr/src/app/media
-      - hemmat_log_volume:/usr/src/app/logging
-    env_file:
-      - ./.env.hemmat
-    depends_on:
-      - hemmat_db
-      - web
+  
   db:
-    image: postgres:12.0-alpine
+    image: sqlite:12.0-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - sqlite_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
-  test_db:
-    image: postgres:12.0-alpine
-    volumes:
-      - test_postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env.test.db
-  hemmat_db:
-    image: postgres:12.0-alpine
-    volumes:
-      - hemmat_postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env.hemmat.db
-  dokuwiki:
-    image: 'bitnami/dokuwiki:0'
-    volumes:
-      - 'dokuwiki_data:/bitnami'
   nginx:
     build: ./nginx
     volumes:
-      - static_volume:/home/app/staticfiles
-      - media_volume:/home/app/media
-      - test_static_volume:/home/app/test_staticfiles
-      - test_media_volume:/home/app/test_media
-      - hemmat_static_volume:/home/app/hemmat_staticfiles
-      - hemmat_media_volume:/home/app/hemmat_media
       - ./log/nginx:/var/log/nginx
     ports:
       - 80:80
     depends_on:
       - web
-      - hemmat_web
-      - test_web
-      - dokuwiki
-volumes:
-  postgres_data:
-  static_volume:
-  media_volume:
-  test_postgres_data:
-  test_static_volume:
-  test_media_volume:
-  hemmat_postgres_data:
-  hemmat_static_volume:
-  hemmat_media_volume:
-  hemmat_log_volume:
-    driver_opts:
-      type: 'none'
-      o: 'bind'
-      device: './log/hemmat'
-  dokuwiki_data:
+  volumes:
+  sqlite_data:
