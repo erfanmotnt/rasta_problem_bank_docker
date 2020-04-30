@@ -5,7 +5,7 @@ services:
     build:
       context: ./../rasta_problem_bank
       dockerfile: ./Dockerfile.prod
-    command: gunicorn ra.wsgi:application --bind 0.0.0.0:8000
+    command: pipenv run gunicorn ra.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app/logging:/usr/src/app/logging
     env_file:
