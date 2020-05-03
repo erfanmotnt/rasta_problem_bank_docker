@@ -9,6 +9,29 @@ services:
       - "8000:8000"
     command: pipenv run gunicorn rasta_problem_bank.wsgi:application --bind 0.0.0.0:8000
     volumes:
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/media
       - ./app/logging:/usr/src/app/logging
     env_file:
       - ./.env.prod
+    
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.prod.db
+  
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/staticfiles
+      - media_volume:/home/app/media
+      - ./log/nginx:/var/log/nginx
+    ports:
+      - 80:80
+    depends_on:
+      - web
+volumes:
+  static_volume:
+  media_volume:
