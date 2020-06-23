@@ -21,6 +21,45 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
+
+  rasta_web:
+    build:
+      context: ./../Rasta
+      dockerfile: ./dockerfile
+
+    command: gunicorn Rasta_Web.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - rasta_web_media_volume:/usr/src/app/media
+      - rasta_web_static_volume:/usr/src/app/staticfiles
+    env_file:
+      - ./.env.web.prod
+    depends_on:
+      - rasta_db
+      - redis
+
+  redis:
+    image: "redis:alpine"
+
+  rasta_worker:
+    build:
+      context: ./../Rasta
+      dockerfile: ./dockerfile
+    command: celery -A Rasta_Web worker -l info
+    volumes:
+    - rasta_web_media_volume:/usr/src/app/media
+    env_file:
+    - ./.env.web.prod
+    depends_on:
+    - rasta_db
+    - redis
+
+  rasta_db:
+    image: postgres:12.0-alpine
+    volumes:
+      - rasta_web_postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.web.db
+
   
   nginx:
     build: ./nginx
@@ -28,11 +67,18 @@ services:
       - static_volume:/home/app/staticfiles
       - media_volume:/home/app/media
       - ./log/nginx:/var/log/nginx
+      - rasta_web_media_volume:/home/app/rasta_web_media/
+      - rasta_web_static_volume:/home/app/rasta_web_staticfiles/
     ports:
       - 80:80
     depends_on:
       - web
+      - rasta_web
 volumes:
   static_volume:
   media_volume:
   postgres_data:
+  rasta_web_postgres_data:
+  rasta_worker_media_volume:
+  rasta_web_media_volume:
+  rasta_web_static_volume:
