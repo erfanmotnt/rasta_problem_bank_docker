@@ -31,6 +31,7 @@ services:
     volumes:
       - rasta_web_media_volume:/usr/src/app/media
       - rasta_web_static_volume:/usr/src/app/staticfiles
+      - ./rasta/logging:/usr/src/app/logging
     env_file:
       - ./.env.web.prod
     depends_on:
@@ -47,6 +48,7 @@ services:
     command: celery -A Rasta_Web worker -l info
     volumes:
     - rasta_web_media_volume:/usr/src/app/media
+    - ./rasta_worker/logging:/usr/src/app/logging
     env_file:
     - ./.env.web.prod
     depends_on:
