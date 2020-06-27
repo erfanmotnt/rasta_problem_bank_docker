@@ -44,7 +44,7 @@ services:
   rasta_worker:
     build:
       context: ./../Rasta
-      dockerfile: ./dockerfile
+      dockerfile: ./dockerfile_worker
     command: celery -A Rasta_Web worker -l info
     volumes:
     - rasta_web_media_volume:/usr/src/app/media
