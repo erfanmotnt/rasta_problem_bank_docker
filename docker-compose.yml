@@ -24,7 +24,7 @@ services:
 
   rasta_web:
     build:
-      context: ./../Rasta
+      context: ./../website
       dockerfile: ./dockerfile
 
     command: gunicorn Rasta_Web.wsgi:application --bind 0.0.0.0:8000
@@ -43,7 +43,7 @@ services:
 
   rasta_worker:
     build:
-      context: ./../Rasta
+      context: ./../website
       dockerfile: ./dockerfile_worker
     command: celery -A Rasta_Web worker -l info
     volumes:
