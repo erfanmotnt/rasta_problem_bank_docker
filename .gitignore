@@ -2,3 +2,4 @@
 .env.prod.db
 .env.prod.react
 log/nginx/
+app/
