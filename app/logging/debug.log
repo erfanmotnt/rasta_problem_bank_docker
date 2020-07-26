@@ -1,0 +1,54 @@
+Invalid HTTP_HOST header: '127.0.0.1'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Bad Request: /api/
+Bad Request: /api/
+Invalid HTTP_HOST header: '127.0.0.1'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Bad Request: /api/
+Bad Request: /api/
+Invalid HTTP_HOST header: '127.0.0.1'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Bad Request: /api/admin/
+Bad Request: /api/admin/
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Bad Request: /admin/
+Bad Request: /admin/
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Bad Request: /admin/
+Bad Request: /admin/
+Not Found: /admin/
+Not Found: /admin/
+Not Found: /djangostatic/rest_framework/css/bootstrap.min.77017a69879a.css
+Not Found: /djangostatic/rest_framework/css/bootstrap.min.77017a69879a.css
+Not Found: /djangostatic/rest_framework/css/bootstrap-tweaks.46ed116b0edd.css
+Not Found: /djangostatic/rest_framework/css/bootstrap-tweaks.46ed116b0edd.css
+Not Found: /djangostatic/rest_framework/css/prettify.a987f72342ee.css
+Not Found: /djangostatic/rest_framework/css/prettify.a987f72342ee.css
+Not Found: /djangostatic/rest_framework/css/default.8d5591a6aabc.css
+Not Found: /djangostatic/rest_framework/css/default.8d5591a6aabc.css
+Not Found: /djangostatic/rest_framework/js/jquery-3.4.1.min.220afd743d9e.js
+Not Found: /djangostatic/rest_framework/js/jquery-3.4.1.min.220afd743d9e.js
+Not Found: /djangostatic/rest_framework/js/ajax-form.0ea6e6052ab5.js
+Not Found: /djangostatic/rest_framework/js/ajax-form.0ea6e6052ab5.js
+Not Found: /djangostatic/rest_framework/js/csrf.969930007329.js
+Not Found: /djangostatic/rest_framework/js/csrf.969930007329.js
+Not Found: /djangostatic/rest_framework/js/default.5b08897dbdc3.js
+Not Found: /djangostatic/rest_framework/js/default.5b08897dbdc3.js
+Not Found: /djangostatic/rest_framework/js/bootstrap.min.2f34b630ffe3.js
+Not Found: /djangostatic/rest_framework/js/bootstrap.min.2f34b630ffe3.js
+Not Found: /djangostatic/rest_framework/js/prettify-min.709bfcc456c6.js
+Not Found: /djangostatic/rest_framework/js/prettify-min.709bfcc456c6.js
+Not Found: /djangostatic/rest_framework/js/jquery-3.4.1.min.220afd743d9e.js
+Not Found: /djangostatic/rest_framework/js/jquery-3.4.1.min.220afd743d9e.js
+Not Found: /djangostatic/rest_framework/js/ajax-form.0ea6e6052ab5.js
+Not Found: /djangostatic/rest_framework/js/ajax-form.0ea6e6052ab5.js
+Not Found: /djangostatic/rest_framework/js/csrf.969930007329.js
+Not Found: /djangostatic/rest_framework/js/csrf.969930007329.js
+Not Found: /djangostatic/rest_framework/js/bootstrap.min.2f34b630ffe3.js
+Not Found: /djangostatic/rest_framework/js/bootstrap.min.2f34b630ffe3.js
+Not Found: /djangostatic/rest_framework/js/prettify-min.709bfcc456c6.js
+Not Found: /djangostatic/rest_framework/js/prettify-min.709bfcc456c6.js
+Not Found: /djangostatic/rest_framework/js/default.5b08897dbdc3.js
+Not Found: /djangostatic/rest_framework/js/default.5b08897dbdc3.js
