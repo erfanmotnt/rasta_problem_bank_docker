@@ -72,7 +72,6 @@ services:
     env_file:
       - ./.env.web.db
 
-  
   nginx:
     build: ./nginx
     volumes:
@@ -82,7 +81,7 @@ services:
       - rasta_web_media_volume:/home/app/rasta_web_media/
       - rasta_web_static_volume:/home/app/rasta_web_staticfiles/
       - react_files:/home/app/build
-      ports:
+    ports:
       - 80:80
     depends_on:
       - web
@@ -96,4 +95,3 @@ volumes:
   rasta_web_media_volume:
   rasta_web_static_volume:
   react_files:
-  
