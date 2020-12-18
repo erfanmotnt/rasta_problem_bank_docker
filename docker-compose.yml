@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  web:
+  bank_web:
     build:
       context: ./../rasta_problem_bank
       dockerfile: ./Dockerfile.prod
@@ -9,88 +9,41 @@ services:
       - "8000:8000"
     command: pipenv run gunicorn rasta_problem_bank.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - static_volume:/usr/src/app/staticfiles
-      - media_volume:/usr/src/app/media
+      - bank_static_volume:/usr/src/app/staticfiles
+      - bank_media_volume:/usr/src/app/media
       - ./app/logging:/usr/src/app/logging
     env_file:
       - ./.env.prod
       
-  react:
+  bank_react:
     build:
       context: ./../rasta_problem_bank_ui
       dockerfile: ./Dockerfile.prod
     volumes:
-      - react_files:/app/build
+      - bank_react_files:/app/build
     env_file:
       - ./.env.prod.react
         
-  db:
+  bank_db:
     image: postgres:12.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.prod.db
 
-  rasta_web:
-    build:
-      context: ./../website
-      dockerfile: ./dockerfile
-
-    command: gunicorn Rasta_Web.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - rasta_web_media_volume:/usr/src/app/media
-      - rasta_web_static_volume:/usr/src/app/staticfiles
-      - ./rasta/logging:/usr/src/app/logging
-    env_file:
-      - ./.env.web.prod
-    depends_on:
-      - rasta_db
-      - redis
-
-  redis:
-    image: "redis:alpine"
-
-  rasta_worker:
-    build:
-      context: ./../website
-      dockerfile: ./dockerfile_worker
-    command: celery -A Rasta_Web worker -l info
-    volumes:
-    - rasta_web_media_volume:/usr/src/app/media
-    - ./rasta_worker/logging:/usr/src/app/logging
-    env_file:
-    - ./.env.web.prod
-    depends_on:
-    - rasta_db
-    - redis
-
-  rasta_db:
-    image: postgres:12.0-alpine
-    volumes:
-      - rasta_web_postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env.web.db
-
   nginx:
     build: ./nginx
     volumes:
-      - static_volume:/home/app/staticfiles
-      - media_volume:/home/app/media
+      - bank_static_volume:/home/app/bank_staticfiles
+      - bank_media_volume:/home/app/bank_media
       - ./log/nginx:/var/log/nginx
-      - rasta_web_media_volume:/home/app/rasta_web_media/
-      - rasta_web_static_volume:/home/app/rasta_web_staticfiles/
-      - react_files:/home/app/build
+      - bank_react_files:/home/app/bank_build
     ports:
       - 80:80
     depends_on:
-      - web
-      - rasta_web
+      - bank_web
 volumes:
-  static_volume:
-  media_volume:
+  bank_static_volume:
+  bank_media_volume:
   postgres_data:
-  rasta_web_postgres_data:
-  rasta_worker_media_volume:
-  rasta_web_media_volume:
-  rasta_web_static_volume:
-  react_files:
+  bank_react_files:
