@@ -3,3 +3,5 @@
 .env.prod.react
 log/nginx/
 app/
+rasta_peoblem_bank/
+rasta_peoblem_bank_ui/

@@ -3,7 +3,7 @@ version: '3.7'
 services:
   bank_web:
     build:
-      context: ./../rasta_problem_bank
+      context: ./rasta_problem_bank
       dockerfile: ./Dockerfile.prod
     ports:
       - "8000:8000"
@@ -17,7 +17,7 @@ services:
       
   bank_react:
     build:
-      context: ./../rasta_problem_bank_ui
+      context: ./rasta_problem_bank_ui
       dockerfile: ./Dockerfile.prod
     volumes:
       - bank_react_files:/app/build
