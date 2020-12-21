@@ -7,7 +7,7 @@ services:
       dockerfile: ./Dockerfile.prod
     ports:
       - "8000:8000"
-    command: pipenv run gunicorn rasta_problem_bank.wsgi:application --bind 0.0.0.0:8000
+    command: pipenv --python 3.7.4 run gunicorn rasta_problem_bank.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - bank_static_volume:/usr/src/app/staticfiles
       - bank_media_volume:/usr/src/app/media
