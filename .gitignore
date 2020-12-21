@@ -3,3 +3,5 @@
 .env.prod.react
 log/nginx/
 app/
+rasta_problem_bank_ui/
+rasta_problem_bank/
