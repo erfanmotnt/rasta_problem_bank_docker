@@ -16,6 +16,8 @@ services:
       - bank_db
         
   bank_db:
+    ports:
+      - 5432:5432
     image: postgres:12.0-alpine
     restart: always
     volumes:
