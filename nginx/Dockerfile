@@ -2,11 +2,15 @@ FROM node:latest as build
 
 WORKDIR /app
 
+
+COPY rasta_problem_bank_ui/package.json /app/package.json
+COPY rasta_problem_bank_ui/yarn.lock /app/yarn.lock
+
 COPY rasta_problem_bank_ui /app
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN npm i --production
-RUN npm run-script build --production
+RUN yarn install --prod
+RUN yarn build
 
 
 FROM nginx:1.17.4-alpine
